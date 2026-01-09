@@ -40,6 +40,31 @@ public class AdminController {
 
 	@GetMapping("/dashboard")
 	public String dashboard(Model model) {
+		model.addAttribute("currentPage", "dashboard");
+		return "admin/dashboard";
+	}
+
+	@GetMapping("/vehicule/create")
+	public String vehiculeCreate(Model model) {
+		model.addAttribute("currentPage", "vehicule-create");
+		return "admin/dashboard";
+	}
+
+	@GetMapping("/vehicule/list")
+	public String vehiculeList(Model model) {
+		model.addAttribute("currentPage", "vehicule-list");
+		return "admin/dashboard";
+	}
+
+	@GetMapping("/chauffeur/create")
+	public String chauffeurCreate(Model model) {
+		model.addAttribute("currentPage", "chauffeur-create");
+		return "admin/dashboard";
+	}
+
+	@GetMapping("/chauffeur/list")
+	public String chauffeurList(Model model) {
+		model.addAttribute("currentPage", "chauffeur-list");
 		return "admin/dashboard";
 	}
 }

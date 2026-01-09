@@ -22,10 +22,8 @@
                 <i class="bi bi-chevron-down toggle-icon"></i>
             </a>
             <div class="collapse submenu" id="vehiculeMenu">
-                <a class="submenu-item" href="#"><i class="bi bi-plus-circle"></i> Créer</a>
-                <a class="submenu-item" href="#"><i class="bi bi-list-ul"></i> Liste</a>
-                <a class="submenu-item" href="#"><i class="bi bi-pencil-square"></i> Modifier</a>
-                <a class="submenu-item" href="#"><i class="bi bi-trash"></i> Supprimer</a>
+                <a class="submenu-item" href="/admin/vehicule/create"><i class="bi bi-plus-circle"></i> Saisie</a>
+                <a class="submenu-item" href="/admin/vehicule/list"><i class="bi bi-list-ul"></i> Affichage</a>
             </div>
         </div>
         
@@ -38,10 +36,8 @@
                 <i class="bi bi-chevron-down toggle-icon"></i>
             </a>
             <div class="collapse submenu" id="chauffeurMenu">
-                <a class="submenu-item" href="#"><i class="bi bi-plus-circle"></i> Créer</a>
-                <a class="submenu-item" href="#"><i class="bi bi-list-ul"></i> Liste</a>
-                <a class="submenu-item" href="#"><i class="bi bi-pencil-square"></i> Modifier</a>
-                <a class="submenu-item" href="#"><i class="bi bi-trash"></i> Supprimer</a>
+                <a class="submenu-item" href="/admin/chauffeur/create"><i class="bi bi-plus-circle"></i> Saisie</a>
+                <a class="submenu-item" href="/admin/chauffeur/list"><i class="bi bi-list-ul"></i> Affichage</a>
             </div>
         </div>
     </nav>
