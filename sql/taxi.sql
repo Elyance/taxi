@@ -89,7 +89,7 @@ CREATE TABLE vehicule(
    immatriculation VARCHAR(50)  NOT NULL,
    modele VARCHAR(100) ,
    statut VARCHAR(50) ,
-   id_place_vehicule INTEGER NOT NULL,
+   id_place_vehicule INTEGER NOT NULL,                        
    PRIMARY KEY(id_vehicule),
    UNIQUE(immatriculation),
    FOREIGN KEY(id_place_vehicule) REFERENCES place_vehicule(id_place_vehicule)
