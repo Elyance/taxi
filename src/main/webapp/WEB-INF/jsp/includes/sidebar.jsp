@@ -40,6 +40,20 @@
                 <a class="submenu-item" href="/admin/chauffeur/list"><i class="bi bi-list-ul"></i> Affichage</a>
             </div>
         </div>
+        
+        <div class="module-item">
+            <a class="module-toggle" data-bs-toggle="collapse" href="#billetMenu" role="button" aria-expanded="false">
+                <div class="module-icon-text">
+                    <i class="bi bi-receipt"></i>
+                    <span>Billet</span>
+                </div>
+                <i class="bi bi-chevron-down toggle-icon"></i>
+            </a>
+            <div class="collapse submenu" id="billetMenu">
+                <a class="submenu-item" href="/voyages"><i class="bi bi-ticket-perforated"></i> Achat Billet</a>
+                <a class="submenu-item" href="/billets"><i class="bi bi-list-ul"></i> Liste des Billets</a>
+            </div>
+        </div>
     </nav>
     
     <div class="sidebar-footer">

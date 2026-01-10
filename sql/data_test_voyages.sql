@@ -16,6 +16,14 @@ INSERT INTO trajet (id_gare_depart, id_gare_arrivee) VALUES
 (3, 4), -- Antsirabe → Fianarantsoa
 (1, 5); -- Antananarivo → Mahajanga
 
+-- Insertion des tarifs pour chaque trajet
+INSERT INTO tarif (id_trajet, prix_base) VALUES 
+(1, 45000.00), -- Antananarivo → Toamasina : 45 000 Ar
+(2, 25000.00), -- Antananarivo → Antsirabe : 25 000 Ar
+(3, 60000.00), -- Antananarivo → Fianarantsoa : 60 000 Ar
+(4, 35000.00), -- Antsirabe → Fianarantsoa : 35 000 Ar
+(5, 55000.00); -- Antananarivo → Mahajanga : 55 000 Ar
+
 -- Insertion des chauffeurs
 INSERT INTO chauffeur (nom, prenom, telephone) VALUES 
 ('Rakoto', 'Jean', '034 12 345 67'),
@@ -136,3 +144,75 @@ INSERT INTO vehicule_statut_place (id_vehicule, id_place, id_statut_place) VALUE
 (5, 66, 1), (5, 67, 1), (5, 68, 1), (5, 69, 3), (5, 70, 1),
 (5, 71, 2), (5, 72, 1), (5, 73, 1), (5, 74, 1), (5, 75, 1),
 (5, 76, 1), (5, 77, 3), (5, 78, 1), (5, 79, 1);
+
+-- Insertion des statuts de billet
+INSERT INTO statut_billet (libelle) VALUES 
+('Confirmé'),
+('Annulé'),
+('En attente');
+
+-- Insertion de clients de test
+INSERT INTO client (nom, telephone) VALUES 
+('Rakotomalala Jean', '034 11 222 33'),
+('Rasoanaivo Marie', '033 44 555 66'),
+('Andrianasolo Paul', '032 77 888 99'),
+('Raharison Sophie', '034 00 111 22'),
+('Randrianasolo Luc', '033 33 444 55'),
+('Razafindrakoto Anna', '032 66 777 88'),
+('Randriamampianina Pierre', '034 99 000 11'),
+('Rakotondrabe Julie', '033 22 333 44'),
+('Andriamahefa Michel', '032 55 666 77'),
+('Rabemananjara Sarah', '034 88 999 00');
+
+-- Insertion de billets de test avec différentes dates et heures d'achat
+-- Billets achetés le 9 janvier 2026 à 14h30 (véhicule 1234 TAA - Toyota Hiace)
+INSERT INTO billet (id_client, id_voyage, id_place, id_statut_billet, date_achat, montant) VALUES 
+(1, 1, 3, 1, '2026-01-09 14:35:00', 45000.00),  -- Voyage 1: Antananarivo → Toamasina, 6h00
+(2, 1, 8, 1, '2026-01-09 14:42:00', 45000.00);
+
+-- Billets achetés le 9 janvier 2026 à 15h15 (véhicule 5678 TAA - Mercedes Sprinter)
+INSERT INTO billet (id_client, id_voyage, id_place, id_statut_billet, date_achat, montant) VALUES 
+(3, 2, 17, 1, '2026-01-09 15:18:00', 25000.00),  -- Voyage 2: Antananarivo → Antsirabe, 7h30
+(4, 2, 24, 1, '2026-01-09 15:25:00', 25000.00),
+(5, 2, 33, 1, '2026-01-09 15:48:00', 25000.00);
+
+-- Billets achetés le 9 janvier 2026 à 10h00 (véhicule 9012 TAA - Hyundai H350)
+INSERT INTO billet (id_client, id_voyage, id_place, id_statut_billet, date_achat, montant) VALUES 
+(6, 3, 38, 1, '2026-01-09 10:12:00', 45000.00),  -- Voyage 3: Antananarivo → Toamasina, 8h00
+(7, 3, 47, 1, '2026-01-09 10:28:00', 45000.00);
+
+-- Billets achetés le 9 janvier 2026 à 08h30 (véhicule 3456 TAA - Ford Transit)
+INSERT INTO billet (id_client, id_voyage, id_place, id_statut_billet, date_achat, montant) VALUES 
+(8, 4, 54, 1, '2026-01-09 08:35:00', 60000.00),  -- Voyage 4: Antananarivo → Fianarantsoa, 9h00
+(9, 4, 62, 1, '2026-01-09 08:45:00', 60000.00);
+
+-- Billets achetés le 9 janvier 2026 à 16h00 (véhicule 7890 TAA - Peugeot Boxer)
+INSERT INTO billet (id_client, id_voyage, id_place, id_statut_billet, date_achat, montant) VALUES 
+(10, 5, 69, 1, '2026-01-09 16:05:00', 55000.00), -- Voyage 5: Antananarivo → Mahajanga, 10h00
+(1, 5, 77, 1, '2026-01-09 16:22:00', 55000.00);
+
+-- Billets achetés le 10 janvier 2026 à 09h00
+INSERT INTO billet (id_client, id_voyage, id_place, id_statut_billet, date_achat, montant) VALUES 
+(2, 8, 36, 1, '2026-01-10 09:15:00', 25000.00),  -- Voyage 8: Antananarivo → Antsirabe, 6h30
+(3, 9, 48, 1, '2026-01-10 09:30:00', 45000.00);  -- Voyage 9: Antananarivo → Toamasina, 7h00
+
+-- Billets avec statut annulé (pour tester)
+INSERT INTO billet (id_client, id_voyage, id_place, id_statut_billet, date_achat, montant) VALUES 
+(4, 6, 16, 2, '2026-01-09 14:10:00', 25000.00);  -- Annulé
+
+-- Insertion des paiements correspondants
+INSERT INTO paiement (id_billet, montant, date_paiement) VALUES 
+(1, 45000.00, '2026-01-09 14:35:00'),
+(2, 45000.00, '2026-01-09 14:42:00'),
+(3, 25000.00, '2026-01-09 15:18:00'),
+(4, 25000.00, '2026-01-09 15:25:00'),
+(5, 25000.00, '2026-01-09 15:48:00'),
+(6, 45000.00, '2026-01-09 10:12:00'),
+(7, 45000.00, '2026-01-09 10:28:00'),
+(8, 60000.00, '2026-01-09 08:35:00'),
+(9, 60000.00, '2026-01-09 08:45:00'),
+(10, 55000.00, '2026-01-09 16:05:00'),
+(11, 55000.00, '2026-01-09 16:22:00'),
+(12, 25000.00, '2026-01-10 09:15:00'),
+(13, 45000.00, '2026-01-10 09:30:00'),
+(14, 25000.00, '2026-01-09 14:10:00');

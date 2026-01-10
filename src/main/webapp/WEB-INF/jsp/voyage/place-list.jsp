@@ -173,6 +173,8 @@
                     <c:forEach items="${places}" var="placeStatut">
                         <c:set var="statutClass" value="${placeStatut.statutPlace.libelle.toLowerCase()}" />
                         <div class="place-card ${statutClass}" 
+                             data-numero="${placeStatut.place.numero}"
+                             data-id-place="${placeStatut.place.idPlace}"
                              onclick="${statutClass == 'disponible' ? 'selectPlace(\'' += placeStatut.place.numero += '\')' : ''}">
                             <div class="place-numero">${placeStatut.place.numero}</div>
                             <span class="place-statut ${statutClass}">${placeStatut.statutPlace.libelle}</span>
@@ -190,8 +192,12 @@
     
     <script>
         function selectPlace(numeroPlace) {
-            alert('Place sélectionnée : ' + numeroPlace);
-            // Ici vous pourrez rediriger vers une page de confirmation d'achat
+            // Récupérer l'ID de la place à partir du numéro
+            const idPlace = document.querySelector('[data-numero="' + numeroPlace + '"]').dataset.idPlace;
+            const idVoyage = ${idVoyage};
+            
+            // Rediriger vers le formulaire client
+            window.location.href = '${pageContext.request.contextPath}/billets/client-form?idVoyage=' + idVoyage + '&idPlace=' + idPlace;
         }
     </script>
 </body>
