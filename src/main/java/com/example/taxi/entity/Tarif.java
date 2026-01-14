@@ -19,4 +19,34 @@ public class Tarif {
 
     @Column(name = "prix_base", precision = 10, scale = 2, nullable = false)
     private BigDecimal prixBase;
+
+    public Long getIdTarif() {
+        return idTarif;
+    }
+
+    public void setIdTarif(Long idTarif) {
+        this.idTarif = idTarif;
+    }
+
+    public Trajet getTrajet() {
+        return trajet;
+    }
+
+    public void setTrajet(Trajet trajet) {
+        this.trajet = trajet;
+    }
+
+    public BigDecimal getPrixBase() {
+        return prixBase;
+    }
+
+    public void setPrixBase(BigDecimal prixBase) {
+        if (prixBase.compareTo(BigDecimal.ZERO) < 0) {
+            throw new IllegalArgumentException("Le prix de base ne peut pas être négatif.");
+        }
+        this.prixBase = prixBase;
+    }
+
+    // Getters and Setters
+    
 }

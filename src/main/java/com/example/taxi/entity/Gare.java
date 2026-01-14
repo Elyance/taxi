@@ -14,4 +14,22 @@ public class Gare {
 
     @Column(name = "nom", length = 100, nullable = false)
     private String nom;
+
+    public Long getIdGare() {
+        return idGare;
+    }
+
+    public void setIdGare(Long idGare) {
+        this.idGare = idGare;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    
 }

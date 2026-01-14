@@ -7,16 +7,16 @@
         <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
         <a href="<c:url value='/vehicule/list'/>" class="breadcrumb-item">Véhicules</a>
         <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
-        <span class="breadcrumb-item active">Ajouter un Véhicule</span>
+        <span class="breadcrumb-item active">Modifier un Véhicule</span>
     </nav>
 </div>
 
 <h2 style="font-size: 24px; font-weight: 700; color: #1f2937; margin-bottom: 10px;">
-    <i class="fas fa-plus-circle"></i> Ajouter un Véhicule
+    <i class="fas fa-edit"></i> Modifier le Véhicule
 </h2>
-<p style="color: #6b7280; margin-bottom: 30px;">Remplissez le formulaire ci-dessous pour ajouter un nouveau véhicule à la flotte.</p>
+<p style="color: #6b7280; margin-bottom: 30px;">Modifiez les informations du véhicule ${vehicule.immatriculation}</p>
 
-<form method="post" action="<c:url value='/vehicule/create'/>" class="form-container">
+<form method="post" action="<c:url value='/vehicule/edit/${vehicule.idVehicule}'/>" class="form-container">
     <fieldset style="margin-bottom: 30px; border: none; padding: 0;">
         <legend style="font-size: 16px; font-weight: 700; color: #1f2937; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #e5e7eb;">
             <i class="fas fa-car"></i> Informations Véhicule
@@ -25,12 +25,12 @@
         <div class="form-row">
             <div class="form-group form-group-row">
                 <label class="form-label required">Immatriculation</label>
-                <input type="text" name="immatriculation" class="form-input" placeholder="Ex: TN-3251-CD" required>
+                <input type="text" name="immatriculation" class="form-input" value="${vehicule.immatriculation}" required>
             </div>
 
             <div class="form-group form-group-row">
                 <label class="form-label required">Nombre de Places</label>
-                <input type="number" name="nombrePlace" class="form-input" placeholder="Ex: 8" min="1" max="20" required>
+                <input type="number" name="nombrePlace" class="form-input" value="${vehicule.nombrePlace}" min="1" max="20" required>
             </div>
         </div>
 
@@ -39,7 +39,9 @@
             <select name="idModele" class="form-select">
                 <option value="">Sélectionner un modèle</option>
                 <c:forEach items="${modeles}" var="modele">
-                    <option value="${modele.idModeleVehicule}">${modele.libelle}</option>
+                    <option value="${modele.idModeleVehicule}" <c:if test="${vehicule.modeleVehicule != null && vehicule.modeleVehicule.idModeleVehicule == modele.idModeleVehicule}">selected</c:if>>
+                        ${modele.libelle}
+                    </option>
                 </c:forEach>
             </select>
         </div>
@@ -56,4 +58,3 @@
         </div>
     </div>
 </form>
-

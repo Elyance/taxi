@@ -14,4 +14,22 @@ public class ModeleVehicule {
 
     @Column(name = "libelle", length = 100, nullable = false)
     private String libelle;
+
+    public Long getIdModeleVehicule() {
+        return idModeleVehicule;
+    }
+
+    public void setIdModeleVehicule(Long idModeleVehicule) {
+        this.idModeleVehicule = idModeleVehicule;
+    }
+
+    public String getLibelle() {
+        return libelle;
+    }
+
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
+    }
+
+    
 }
