@@ -40,13 +40,13 @@ CREATE TABLE chauffeur(
 CREATE TABLE modele_vehicule(
    id_modele_vehicule SERIAL,
    libelle VARCHAR(100)  NOT NULL,
-   nombre_place INTEGER NOT NULL,
    PRIMARY KEY(id_modele_vehicule)
 );
 
 CREATE TABLE vehicule(
    id_vehicule SERIAL,
-   immatriculation VARCHAR(50)  NOT NULL,
+   immatriculation VARCHAR(50) NOT NULL,
+   nombre_place INTEGER NOT NULL,
    id_modele_vehicule INTEGER NOT NULL,
    PRIMARY KEY(id_vehicule),
    UNIQUE(immatriculation),
@@ -56,26 +56,7 @@ CREATE TABLE vehicule(
 CREATE TABLE place(
    id_place INTEGER,
    numero VARCHAR(50) ,
-   id_modele_vehicule INTEGER NOT NULL,
-   PRIMARY KEY(id_place),
-   FOREIGN KEY(id_modele_vehicule) REFERENCES modele_vehicule(id_modele_vehicule)
-);
-
-CREATE TABLE statut_place(
-   id_statut_place SERIAL,
-   libelle VARCHAR(50) ,
-   PRIMARY KEY(id_statut_place)
-);
-
-CREATE TABLE vehicule_statut_place(
-   id_vehicule_statut_place SERIAL,
-   id_vehicule INTEGER NOT NULL,
-   id_place INTEGER NOT NULL,
-   id_statut_place INTEGER NOT NULL,
-   PRIMARY KEY(id_vehicule_statut_place),
-   FOREIGN KEY(id_vehicule) REFERENCES vehicule(id_vehicule),
-   FOREIGN KEY(id_place) REFERENCES place(id_place),
-   FOREIGN KEY(id_statut_place) REFERENCES statut_place(id_statut_place)
+   PRIMARY KEY(id_place)
 );
 
 CREATE TABLE voyage(
@@ -109,12 +90,54 @@ CREATE TABLE billet(
    id_voyage INTEGER NOT NULL,
    id_place INTEGER NOT NULL,
    id_statut_billet INTEGER NOT NULL,
-   date_achat TIMESTAMP NOT NULL,
-   montant NUMERIC(10,2)   NOT NULL,
+   montant NUMERIC(10,2) NOT NULL,
    PRIMARY KEY(id_billet),
    FOREIGN KEY(id_client) REFERENCES client(id_client),
    FOREIGN KEY(id_voyage) REFERENCES voyage(id_voyage),
    FOREIGN KEY(id_statut_billet) REFERENCES statut_billet(id_statut_billet)
+);
+
+CREATE TABLE statut_commande(
+   id_statut_commande SERIAL,
+   libelle VARCHAR(50) ,
+   PRIMARY KEY(id_statut_commande)
+);
+
+CREATE TABLE commande(
+   id_commande SERIAL,
+   id_client INTEGER NOT NULL,
+   date_commande TIMESTAMP NOT NULL,
+   montant_total NUMERIC(10,2) NOT NULL,
+   id_statut_commande INTEGER NOT NULL,
+   PRIMARY KEY(id_commande),
+   FOREIGN KEY(id_client) REFERENCES client(id_client),
+   FOREIGN KEY(id_statut_commande) REFERENCES statut_commande(id_statut_commande)
+);
+
+CREATE TABLE detail_commande(
+   id_detail_commande SERIAL,
+   id_commande INTEGER NOT NULL,
+   id_billet INTEGER NOT NULL,
+   PRIMARY KEY(id_detail_commande),
+   FOREIGN KEY(id_commande) REFERENCES commande(id_commande),
+   FOREIGN KEY(id_billet) REFERENCES billet(id_billet)
+);
+
+CREATE TABLE mode_paiement(
+   id_mode_paiement SERIAL,
+   libelle VARCHAR(50) ,
+   PRIMARY KEY(id_mode_paiement)
+);
+
+CREATE TABLE paiement(
+   id_paiement SERIAL,
+   id_commande INTEGER NOT NULL,
+   id_mode_paiement INTEGER NOT NULL,
+   montant NUMERIC(10,2)   NOT NULL,
+   date_paiement TIMESTAMP NOT NULL,
+   PRIMARY KEY(id_paiement),
+   FOREIGN KEY(id_commande) REFERENCES commande(id_commande),
+   FOREIGN KEY(id_mode_paiement) REFERENCES mode_paiement(id_mode_paiement)
 );
 
 CREATE TABLE historique_statut_billet(
@@ -125,13 +148,4 @@ CREATE TABLE historique_statut_billet(
    PRIMARY KEY(id_historique),
    FOREIGN KEY(id_billet) REFERENCES billet(id_billet),
    FOREIGN KEY(id_statut_billet) REFERENCES statut_billet(id_statut_billet)
-);
-
-CREATE TABLE paiement(
-   id_paiement SERIAL,
-   id_billet INTEGER NOT NULL,
-   montant NUMERIC(10,2)   NOT NULL,
-   date_paiement TIMESTAMP NOT NULL,
-   PRIMARY KEY(id_paiement),
-   FOREIGN KEY(id_billet) REFERENCES billet(id_billet)
 );
