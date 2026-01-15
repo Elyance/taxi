@@ -14,4 +14,22 @@ public class StatutCommande {
 
     @Column(name = "libelle", length = 50)
     private String libelle;
+
+    public Long getIdStatutCommande() {
+        return idStatutCommande;
+    }
+
+    public void setIdStatutCommande(Long idStatutCommande) {
+        this.idStatutCommande = idStatutCommande;
+    }
+
+    public String getLibelle() {
+        return libelle;
+    }
+
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
+    }
+
+    
 }

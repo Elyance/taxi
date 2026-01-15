@@ -19,4 +19,28 @@ public class DetailCommande {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_billet", nullable = false)
     private Billet billet;
+
+    public Long getIdDetailCommande() {
+        return idDetailCommande;
+    }
+
+    public void setIdDetailCommande(Long idDetailCommande) {
+        this.idDetailCommande = idDetailCommande;
+    }
+
+    public Commande getCommande() {
+        return commande;
+    }
+
+    public void setCommande(Commande commande) {
+        this.commande = commande;
+    }
+
+    public Billet getBillet() {
+        return billet;
+    }
+
+    public void setBillet(Billet billet) {
+        this.billet = billet;
+    }
 }

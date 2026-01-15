@@ -27,4 +27,44 @@ public class Commande {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_statut_commande", nullable = false)
     private StatutCommande statutCommande;
+
+    public Long getIdCommande() {
+        return idCommande;
+    }
+
+    public void setIdCommande(Long idCommande) {
+        this.idCommande = idCommande;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public LocalDateTime getDateCommande() {
+        return dateCommande;
+    }
+
+    public void setDateCommande(LocalDateTime dateCommande) {
+        this.dateCommande = dateCommande;
+    }
+
+    public BigDecimal getMontantTotal() {
+        return montantTotal;
+    }
+
+    public void setMontantTotal(BigDecimal montantTotal) {
+        this.montantTotal = montantTotal;
+    }
+
+    public StatutCommande getStatutCommande() {
+        return statutCommande;
+    }
+
+    public void setStatutCommande(StatutCommande statutCommande) {
+        this.statutCommande = statutCommande;
+    }
 }

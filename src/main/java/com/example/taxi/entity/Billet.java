@@ -31,4 +31,54 @@ public class Billet {
 
     @Column(name = "montant", precision = 10, scale = 2, nullable = false)
     private BigDecimal montant;
+
+    public Long getIdBillet() {
+        return idBillet;
+    }
+
+    public void setIdBillet(Long idBillet) {
+        this.idBillet = idBillet;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Voyage getVoyage() {
+        return voyage;
+    }
+
+    public void setVoyage(Voyage voyage) {
+        this.voyage = voyage;
+    }
+
+    public Place getPlace() {
+        return place;
+    }
+
+    public void setPlace(Place place) {
+        this.place = place;
+    }
+
+    public StatutBillet getStatutBillet() {
+        return statutBillet;
+    }
+
+    public void setStatutBillet(StatutBillet statutBillet) {
+        this.statutBillet = statutBillet;
+    }
+
+    public BigDecimal getMontant() {
+        return montant;
+    }
+
+    public void setMontant(BigDecimal montant) {
+        this.montant = montant;
+    }
+
+    
 }

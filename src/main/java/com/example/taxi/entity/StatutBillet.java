@@ -14,4 +14,22 @@ public class StatutBillet {
 
     @Column(name = "libelle", length = 50)
     private String libelle;
+
+    public Long getIdStatutBillet() {
+        return idStatutBillet;
+    }
+
+    public void setIdStatutBillet(Long idStatutBillet) {
+        this.idStatutBillet = idStatutBillet;
+    }
+
+    public String getLibelle() {
+        return libelle;
+    }
+
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
+    }
+
+    
 }

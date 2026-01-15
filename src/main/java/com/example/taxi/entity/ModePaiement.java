@@ -14,4 +14,22 @@ public class ModePaiement {
 
     @Column(name = "libelle", length = 50)
     private String libelle;
+
+    public Long getIdModePaiement() {
+        return idModePaiement;
+    }
+
+    public void setIdModePaiement(Long idModePaiement) {
+        this.idModePaiement = idModePaiement;
+    }
+
+    public String getLibelle() {
+        return libelle;
+    }
+
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
+    }
+
+    
 }

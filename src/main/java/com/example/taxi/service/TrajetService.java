@@ -123,6 +123,14 @@ public class TrajetService {
             trajetRepository.deleteById(id);
         }
     }
+
+    /**
+     * Obtient le tarif d'un trajet
+     */
+    public BigDecimal getTarifForTrajet(Long trajetId) {
+        BigDecimal prix = tarifRepository.findPrixBaseByTrajetId(trajetId);
+        return prix != null ? prix : BigDecimal.ZERO;
+    }
 }
 
 

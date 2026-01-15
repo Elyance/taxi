@@ -29,20 +29,6 @@ public class ChauffeurService {
     }
 
     public List<Chauffeur> searchChauffeurs(String nom, String prenom) {
-        List<Chauffeur> chauffeurs = chauffeurRepository.findAll();
-
-        if (nom != null && !nom.isEmpty()) {
-            chauffeurs = chauffeurs.stream()
-                    .filter(c -> c.getNom().toUpperCase().contains(nom.toUpperCase()))
-                    .toList();
-        }
-
-        if (prenom != null && !prenom.isEmpty()) {
-            chauffeurs = chauffeurs.stream()
-                    .filter(c -> c.getPrenom().toUpperCase().contains(prenom.toUpperCase()))
-                    .toList();
-        }
-
-        return chauffeurs;
+        return chauffeurRepository.searchChauffeurs(nom, prenom);
     }
 }

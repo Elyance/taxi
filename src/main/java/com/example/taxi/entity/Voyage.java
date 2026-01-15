@@ -27,4 +27,46 @@ public class Voyage {
 
     @Column(name = "date_voyage", nullable = false)
     private LocalDateTime dateVoyage;
+
+    public Long getIdVoyage() {
+        return idVoyage;
+    }
+
+    public void setIdVoyage(Long idVoyage) {
+        this.idVoyage = idVoyage;
+    }
+
+    public Chauffeur getChauffeur() {
+        return chauffeur;
+    }
+
+    public void setChauffeur(Chauffeur chauffeur) {
+        this.chauffeur = chauffeur;
+    }
+
+    public Vehicule getVehicule() {
+        return vehicule;
+    }
+
+    public void setVehicule(Vehicule vehicule) {
+        this.vehicule = vehicule;
+    }
+
+    public Trajet getTrajet() {
+        return trajet;
+    }
+
+    public void setTrajet(Trajet trajet) {
+        this.trajet = trajet;
+    }
+
+    public LocalDateTime getDateVoyage() {
+        return dateVoyage;
+    }
+
+    public void setDateVoyage(LocalDateTime dateVoyage) {
+        this.dateVoyage = dateVoyage;
+    }
+
+    
 }

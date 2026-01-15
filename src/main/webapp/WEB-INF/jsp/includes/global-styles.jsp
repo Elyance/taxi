@@ -8,11 +8,14 @@
         width: 100%;
         border-collapse: collapse;
         margin-top: 20px;
+        table-layout: auto;
     }
 
     .data-table thead {
         background: #f3f4f6;
         border-bottom: 2px solid #e5e7eb;
+        position: sticky;
+        top: 0;
     }
 
     .data-table thead th {
@@ -20,9 +23,10 @@
         text-align: left;
         font-weight: 600;
         color: #374151;
-        font-size: 14px;
+        font-size: 13px;
         text-transform: uppercase;
         letter-spacing: 0.5px;
+        white-space: nowrap;
     }
 
     .data-table tbody tr {
@@ -35,13 +39,78 @@
     }
 
     .data-table tbody td {
-        padding: 15px;
+        padding: 12px 15px;
         color: #374151;
         font-size: 14px;
+        vertical-align: middle;
     }
 
     .data-table tbody tr:last-child {
         border-bottom: none;
+    }
+
+    /* Colonnes de tableau - sizing responsif */
+    .data-table th:nth-child(1),
+    .data-table td:nth-child(1) {
+        min-width: 200px;
+        flex: 1.2;
+    }
+
+    .data-table th:nth-child(2),
+    .data-table td:nth-child(2) {
+        min-width: 140px;
+        flex: 1;
+    }
+
+    .data-table th:nth-child(3),
+    .data-table td:nth-child(3) {
+        min-width: 150px;
+        flex: 1;
+    }
+
+    .data-table th:nth-child(4),
+    .data-table td:nth-child(4) {
+        min-width: 140px;
+        flex: 1;
+    }
+
+    .data-table th:nth-child(5),
+    .data-table td:nth-child(5) {
+        min-width: 80px;
+        flex: 0.8;
+        text-align: right;
+    }
+
+    .data-table th:nth-child(6),
+    .data-table td:nth-child(6) {
+        min-width: 130px;
+        flex: 1;
+        white-space: nowrap;
+    }
+
+    /* Responsive wrapper pour scrolling horizontal */
+    div[style*="overflow-x: auto"] {
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    div[style*="overflow-x: auto"]::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    div[style*="overflow-x: auto"]::-webkit-scrollbar-track {
+        background: #f1f5f9;
+    }
+
+    div[style*="overflow-x: auto"]::-webkit-scrollbar-thumb {
+        background: #cbd5e0;
+        border-radius: 3px;
+    }
+
+    div[style*="overflow-x: auto"]::-webkit-scrollbar-thumb:hover {
+        background: #a0aec0;
     }
 
     /* Empty State */
@@ -173,20 +242,30 @@
     .table-actions {
         display: flex;
         gap: 8px;
+        flex-wrap: wrap;
+        justify-content: flex-start;
     }
 
     .btn-action {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        padding: 6px 12px;
+        padding: 8px 14px;
         border: none;
         border-radius: 6px;
-        font-size: 12px;
+        font-size: 13px;
+        font-weight: 600;
         cursor: pointer;
         transition: all 0.2s ease;
         text-decoration: none;
-        gap: 4px;
+        gap: 6px;
+        white-space: nowrap;
+        min-width: fit-content;
+    }
+
+    .btn-action:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 
     .btn-view {
@@ -196,6 +275,7 @@
 
     .btn-view:hover {
         background: #bfdbfe;
+        color: #0c4a8b;
     }
 
     .btn-edit {
@@ -205,6 +285,7 @@
 
     .btn-edit:hover {
         background: #fde68a;
+        color: #92400e;
     }
 
     .btn-delete {
@@ -214,6 +295,7 @@
 
     .btn-delete:hover {
         background: #fecaca;
+        color: #991b1b;
     }
 
     /* List Header Section */
@@ -652,5 +734,381 @@
             padding: 6px 10px;
             font-size: 12px;
         }
+    }
+
+    /* ========== ALERT STYLES ========== */
+    .alert {
+        padding: 15px 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        border: 1px solid transparent;
+    }
+
+    .alert-icon {
+        font-size: 18px;
+        flex-shrink: 0;
+        margin-top: 2px;
+    }
+
+    .alert-content {
+        flex-grow: 1;
+    }
+
+    .alert-message {
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .alert-success {
+        background-color: #ecfdf5;
+        border-color: #a7f3d0;
+        color: #065f46;
+    }
+
+    .alert-success .alert-icon {
+        color: #10b981;
+    }
+
+    .alert-danger {
+        background-color: #fef2f2;
+        border-color: #fecaca;
+        color: #7f1d1d;
+    }
+
+    .alert-danger .alert-icon {
+        color: #dc2626;
+    }
+
+    .alert-warning {
+        background-color: #fffbeb;
+        border-color: #fde68a;
+        color: #78350f;
+    }
+
+    .alert-warning .alert-icon {
+        color: #f59e0b;
+    }
+
+    .alert-info {
+        background-color: #eff6ff;
+        border-color: #bfdbfe;
+        color: #0c2d6b;
+    }
+
+    .alert-info .alert-icon {
+        color: #0284c7;
+    }
+
+    /* ========== STYLES SPÉCIFIQUES BILLET ========== */
+    
+    /* Cartes de statistiques billets */
+    .billet-stats-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .billet-stat-card {
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .billet-stat-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+
+    .billet-stat-gradient {
+        padding: 20px;
+        color: white;
+        display: flex;
+    }
+
+    .billet-stat-success {
+        background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    }
+
+    .billet-stat-info {
+        background: linear-gradient(135deg, #17a2b8 0%, #20c997 100%);
+    }
+
+    .billet-stat-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .billet-stat-label {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 0;
+        opacity: 0.9;
+        font-weight: 600;
+    }
+
+    .billet-stat-value {
+        font-size: 28px;
+        margin: 8px 0 0 0;
+        font-weight: 700;
+    }
+
+    .billet-stat-icon {
+        font-size: 40px;
+        opacity: 0.2;
+    }
+
+    /* Tableau billets */
+    .billet-table-container {
+        margin-bottom: 20px;
+    }
+
+    .billet-table-card {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        overflow: hidden;
+    }
+
+    .billet-table-header {
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-bottom: 1px solid #e5e7eb;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .billet-table-title {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 600;
+        color: #1f2937;
+    }
+
+    .billet-table-badge {
+        background-color: #e5e7eb;
+        color: #374151;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 500;
+        white-space: nowrap;
+    }
+
+    .billet-table-body {
+        padding: 0;
+        overflow-x: auto;
+    }
+
+    .billet-table-card .table {
+        margin-bottom: 0;
+    }
+
+    .bg-gradient-success {
+        background: linear-gradient(135deg, #28a745 0%, #20c997 100%) !important;
+    }
+
+    .bg-gradient-info {
+        background: linear-gradient(135deg, #17a2b8 0%, #20c997 100%) !important;
+    }
+
+    .card-body.bg-gradient-success,
+    .card-body.bg-gradient-info {
+        border-radius: 0.25rem 0.25rem 0 0;
+        color: white !important;
+    }
+
+    /* Tables in billing */
+    .table {
+        background-color: white !important;
+        color: #333 !important;
+        margin-bottom: 0;
+    }
+
+    .table thead th {
+        background-color: #f8f9fa !important;
+        color: #333 !important;
+        font-weight: 600;
+        border-bottom: 2px solid #dee2e6;
+        vertical-align: middle;
+    }
+
+    .table tbody {
+        background-color: white !important;
+    }
+
+    .table tbody tr {
+        background-color: white !important;
+        color: #333 !important;
+    }
+
+    .table tbody tr td {
+        color: #333 !important;
+        background-color: white !important;
+        vertical-align: middle;
+    }
+
+    .table tbody tr:hover {
+        background-color: #f5f5f5 !important;
+        transition: background-color 0.2s ease;
+        color: #333 !important;
+    }
+
+    .table small {
+        color: #666 !important;
+    }
+
+    .table-striped {
+        background-color: white !important;
+    }
+
+    .table-striped tbody tr {
+        background-color: white !important;
+    }
+
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: white !important;
+    }
+
+    /* Badges */
+    .badge {
+        padding: 0.4rem 0.6rem;
+        font-weight: 500;
+        color: #666 !important;
+    }
+
+    .badge-secondary {
+        background-color: #e2e3e5 !important;
+        color: #333 !important;
+    }
+
+    .badge-info {
+        background-color: #d1ecf1 !important;
+        color: #333 !important;
+    }
+
+    .badge-success {
+        background-color: #d4edda !important;
+        color: #333 !important;
+    }
+
+    .badge-warning {
+        background-color: #fff3cd !important;
+        color: #333 !important;
+    }
+
+    .badge-light {
+        background-color: #f8f9fa !important;
+        color: #333 !important;
+    }
+
+    /* Form controls */
+    .form-control-sm {
+        border-radius: 0.25rem;
+        border: 1px solid #ced4da;
+        padding: 0.375rem 0.75rem;
+        font-size: 0.875rem;
+    }
+
+    .form-label {
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        color: #333;
+    }
+
+    /* Buttons */
+    .btn-sm {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.875rem;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        border-color: #6c757d;
+        color: white;
+    }
+
+    .btn-secondary:hover {
+        background-color: #545b62;
+        border-color: #545b62;
+    }
+
+    /* Responsive wrapper */
+    .table-responsive {
+        border-radius: 4px;
+        border: 1px solid #e5e7eb;
+    }
+
+    /* Align middle utility */
+    .align-middle {
+        vertical-align: middle !important;
+    }
+
+    /* Text utilities */
+    .text-nowrap {
+        white-space: nowrap;
+    }
+
+    .text-muted {
+        color: #6c757d !important;
+    }
+
+    .text-right {
+        text-align: right;
+    }
+
+    .text-success {
+        color: #28a745 !important;
+    }
+
+    .text-uppercase {
+        text-transform: uppercase;
+    }
+
+    .mb-0 {
+        margin-bottom: 0 !important;
+    }
+
+    .mt-2 {
+        margin-top: 0.5rem !important;
+    }
+
+    .me-1 {
+        margin-right: 0.25rem !important;
+    }
+
+    .d-flex {
+        display: flex;
+    }
+
+    .justify-content-between {
+        justify-content: space-between;
+    }
+
+    .align-items-center {
+        align-items: center;
+    }
+
+    .w-100 {
+        width: 100% !important;
     }
 </style>

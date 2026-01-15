@@ -42,26 +42,6 @@ public class VehiculeService {
     }
 
     public List<Vehicule> searchVehicules(String immatriculation, Integer nombrePlace, Long idModele) {
-        List<Vehicule> vehicules = vehiculeRepository.findAll();
-
-        if (immatriculation != null && !immatriculation.isEmpty()) {
-            vehicules = vehicules.stream()
-                    .filter(v -> v.getImmatriculation().toUpperCase().contains(immatriculation.toUpperCase()))
-                    .toList();
-        }
-
-        if (nombrePlace != null && nombrePlace > 0) {
-            vehicules = vehicules.stream()
-                    .filter(v -> v.getNombrePlace() >= nombrePlace)
-                    .toList();
-        }
-
-        if (idModele != null && idModele > 0) {
-            vehicules = vehicules.stream()
-                    .filter(v -> v.getModeleVehicule() != null && v.getModeleVehicule().getIdModeleVehicule().equals(idModele))
-                    .toList();
-        }
-
-        return vehicules;
+        return vehiculeRepository.searchVehicules(immatriculation, nombrePlace, idModele);
     }
 }
